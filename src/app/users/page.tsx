@@ -1,7 +1,7 @@
 "use client";
 
 import { userDelete, userGetAll, userPatch, userPost } from "@/lib/fetch-functions";
-import { filterSchema } from "@/schemas/filter";
+import { userFilterSchema } from "@/schemas/filter";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { FieldErrors, useForm } from "react-hook-form";
 import { formToFilterData } from "@/lib/utils";
@@ -10,7 +10,7 @@ import { ColumnFiltersState } from "@tanstack/react-table";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { User, UserCreate, UserUpdate } from "@/types/user";
 import Button from "@/components/ui/button";
-import { FilterSchema } from "@/types/filter";
+import { UserFilter } from "@/types/filter";
 import { CreateUserDialog } from "./_components/user-dialogs";
 import { Filter } from "@/components/ui/filter";
 import AlertDialog from "@/components/dialogs/alert-dialog";
@@ -98,14 +98,14 @@ export default function UsersPage() {
 
   // Filter Form
 
-  const filterForm = useForm<FilterSchema>({
-    resolver: zodResolver(filterSchema),
+  const filterForm = useForm<UserFilter>({
+    resolver: zodResolver(userFilterSchema),
     defaultValues: {
       name: "",
     },
   });
 
-  const onFilterSubmit = (data: FilterSchema) => {
+  const onFilterSubmit = (data: UserFilter) => {
     setFilterState(formToFilterData(data));
   };
 

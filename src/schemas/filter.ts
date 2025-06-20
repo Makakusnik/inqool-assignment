@@ -1,5 +1,5 @@
 import { z } from "zod";
 
-export const filterSchema = z.object({
+export const userFilterSchema = z.object({
   name: z.string().optional(),
 });
