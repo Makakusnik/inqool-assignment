@@ -10,6 +10,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp } from "lucide-react";
+import { Skeleton } from "./skeleton";
 
 interface TableComponentProps<TData extends { id: string }> {
   data: TData[];
@@ -87,5 +88,28 @@ export function TableComponent<TData extends { id: string }>({ columns, data, ti
         </div>
       </div>
     </div>
+  );
+}
+
+export function TableSkeleton() {
+  return (
+    <>
+      <Skeleton className="w-full h-24 "></Skeleton>
+      <Skeleton className="w-full h-8 mt-2"></Skeleton>
+      <Skeleton className="w-full h-12 mt-2"></Skeleton>
+      <Skeleton className="w-full h-12 mt-2"></Skeleton>
+      <Skeleton className="w-full h-12 mt-2"></Skeleton>
+      <Skeleton className="w-full h-12 mt-2"></Skeleton>
+      <Skeleton className="w-full h-12 mt-2"></Skeleton>
+      <Skeleton className="w-full h-12 mt-2"></Skeleton>
+      <Skeleton className="w-full h-12 mt-2"></Skeleton>
+      <Skeleton className="w-full h-12 mt-2"></Skeleton>
+      <Skeleton className="w-full h-12 mt-2"></Skeleton>
+      <Skeleton className="w-full h-12 mt-2"></Skeleton>
+      <Skeleton className="w-full h-12 mt-2"></Skeleton>
+      <Skeleton className="w-full h-12 mt-2"></Skeleton>
+      <Skeleton className="w-full h-12 mt-2"></Skeleton>
+      <Skeleton className="w-full h-12 mt-2"></Skeleton>
+    </>
   );
 }
