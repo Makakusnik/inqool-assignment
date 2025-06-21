@@ -11,25 +11,48 @@ import { AnimalFilter } from "@/types/filter";
 import { Filter } from "@/components/ui/filter";
 import { toast } from "sonner";
 import { TableSkeleton } from "@/components/ui/table";
-import { animalDelete, animalGetAll, animalPost } from "@/lib/fetch-functions";
+import { animalDelete, animalGetAll, animalPost, reseedPost } from "@/lib/fetch-functions";
 import AnimalTable from "./_components/animal-table";
 import { useConfirmationDialog } from "@/hooks/useConfirmation";
 import AlertDialog from "@/components/dialogs/alert-dialog";
 import { Animal, AnimalCreate } from "@/types/animal";
 import { CreateAnimalDialog } from "./_components/animal-dialogs";
 import Button from "@/components/ui/button";
+import { TriangleAlert } from "lucide-react";
 
 export default function AnimalsPage() {
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [filterState, setFilterState] = useState<ColumnFiltersState>([]);
 
   const { confirm, confirmationDialogProps: alertDialogProps } = useConfirmationDialog();
+  const { confirm: reseedConfirm, confirmationDialogProps: reseedDialogProps } = useConfirmationDialog();
   const queryClient = useQueryClient();
 
   const { data: allAnimals, isLoading } = useQuery({
     queryKey: ["animals"],
     queryFn: animalGetAll,
   });
+
+  const reseedMutation = useMutation({
+    mutationFn: reseedPost,
+    onSuccess: () => {
+      toast.success("Database reseeded successfully");
+      queryClient.invalidateQueries({ queryKey: ["animals"] });
+    },
+  });
+
+  const reseedDB = async () => {
+    const result = await reseedConfirm({
+      acceptButtonVariant: "destructive",
+      acceptButtonText: "Reseed",
+      message: "Are you sure you want to reseed the database? This will delete all existing data.",
+      title: "Reseed Database",
+    });
+
+    if (result) {
+      reseedMutation.mutate();
+    }
+  };
 
   // Edit Animal Handlers
 
@@ -119,7 +142,12 @@ export default function AnimalsPage() {
           <TableSkeleton />
         )}
         <AlertDialog {...alertDialogProps}></AlertDialog>
-        <div className="flex justify-end mt-8">
+        <AlertDialog {...reseedDialogProps}></AlertDialog>
+        <div className="flex justify-between mt-8">
+          <Button variant={"destructive"} onClick={reseedDB}>
+            <TriangleAlert className="w-5 h-5 mr-2" />
+            Reseed DB
+          </Button>
           <CreateAnimalDialog isOpen={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen} onSubmit={onAnimalCreateSubmit}>
             <Button> Create Animal</Button>
           </CreateAnimalDialog>

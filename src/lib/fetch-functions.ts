@@ -13,3 +13,5 @@ export const animalGet = async (id: string) => apiFetch<Animal>(`/animals/${id}`
 export const animalPost = async (body: AnimalCreate) => apiFetch<Animal, AnimalCreate>(`/animals`, { method: "POST" }, body);
 export const animalPatch = async (id: string, body: AnimalUpdate) => apiFetch<Animal, AnimalUpdate>(`/animals/${id}`, { method: "PATCH" }, body);
 export const animalDelete = async (id: string) => apiFetch<Animal>(`/animals/${id}`, { method: "DELETE" });
+
+export const reseedPost = async () => apiFetch("/seed", { method: "POST" });
