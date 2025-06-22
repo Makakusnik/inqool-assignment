@@ -12,17 +12,25 @@ We expect you to use some libraries for forms, fetching data, data validation, e
 
 Page `/users`:
 
-- Fetch a list of users from the API
-- Display the list of users in a table
-- Add a filter to the table to filter the users by name (in the future, there are plans to add more filters)
-- Add a button to clear the filter
-- Add a form to add a new user to the list
-- Add a button to mark a user as banned
-- Add a button to edit a user's details
+- Fetch a list of users from the API - [See Solution](src/app/users/page.tsx#L32)
+- Display the list of users in a table - [See Solution](src/app/users/_components/user-table.tsx#L22)
+- Add a filter to the table to filter the users by name (in the future, there are plans to add more filters) - [See Solution](src/app/users/page.tsx#L148)
+- Add a button to clear the filter - [See Solution](src/components/ui/filter.tsx#L31)
+- Add a form to add a new user to the list - [See Solution](src/app/users/page.tsx#L174)
+- Add a button to mark a user as banned - [See Solution](src/app/users/_components/user-table.tsx#L79)
+- Add a button to edit a user's details - [See Solution](src/app/users/_components/user-table.tsx#L83)
 
 Page `/animals`:
 
 Now do the same for the second entity - **animal**.
+
+- Fetch a list of animals from the API - [See Solution](src/app/animals/page.tsx#L31)
+- Display the list of animals in a table - [See Solution](src/app/animals/_components/animal-table.tsx#L21)
+- Add a filter to the table to filter the animals by name (in the future, there are plans to add more filters) - [See Solution](src/app/animals/page.tsx#L131)
+- Add a button to clear the filter - [See Solution](src/components/ui/filter.tsx#L31)
+- Add a form to add a new animal to the list - [See Solution](src/app/animals/page.tsx#L174)
+- ~~Add a button to mark a animal as banned~~
+- Add a button to edit a animal's details - [See Solution](src/app/animals/_components/animal-table.tsx#L83)
 
 ---
 
