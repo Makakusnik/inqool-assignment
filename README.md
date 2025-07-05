@@ -1,5 +1,13 @@
 # InQool Frontend Interview
 
+---
+
+### update: 5.7. 
+Added big refactor of animal section of assignment - left user section for comparison. 
+When tested with great number of items 1000+ user section will feel unusable when opening dialogs - Animal section is much performant in this aspect - there could be virtualized lists added, but ,,ain't nobody got time for that,, :D.
+
+---
+
 ## Introduction
 
 You are given a simple REST API and asked to create a web application. The API is a simple REST API with two entities - **user** and **animal**. You need to create a web application to interact with these entities.
@@ -21,11 +29,6 @@ Page `/users`:
 - Add a button to edit a user's details - [See Solution](src/app/users/_components/user-table.tsx#L83)
 
 Page `/animals`:
-
-=====
-UPDATE: 5.7. Added big refactor of animal section of assignment - left user section for comparison. 
-When tested with great number of items 1000+ user section will feel unusable when opening dialogs - Animal section is much performant in this aspect - there could be virtualized lists added, but ,,ain't nobody got time for that,, :D.
-=====
 
 Now do the same for the second entity - **animal**.
 
