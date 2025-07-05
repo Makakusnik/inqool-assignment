@@ -1,5 +1,5 @@
 export default async function apiFetch<TResponse, TBody = undefined>(url: string, config?: RequestInit, body?: TBody): Promise<TResponse> {
-  const baseUrl = "https://inqool-interview-api.vercel.app/api";
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
   let options: RequestInit = {
     method: "GET",

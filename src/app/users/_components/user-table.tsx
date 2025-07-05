@@ -45,10 +45,10 @@ export default function UserTable({ data, filterState = [], onBanToggle, onDelet
     }
   };
 
-  const onUserEditSubmit = async (data: UserUpdate, onSuccess: () => void) => {
+  const onUserEditSubmit = async (data: UserUpdate) => {
     if (!userData) return;
 
-    userEditMutation.mutate({ id: userData.id, body: data }, { onSuccess });
+    await userEditMutation.mutateAsync({ id: userData.id, body: data });
 
     setUserData(undefined);
   };

@@ -11,7 +11,7 @@ type EditUserDialogProps = {
   userData?: User;
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
-  onSubmit: (data: UserUpdate, onSuccess: () => void) => void;
+  onSubmit: (data: UserUpdate) => Promise<void>;
   entityLabel?: string;
 } & PropsWithChildren;
 
@@ -34,11 +34,13 @@ function EditUserDialogCore({ userData, children, isOpen, onOpenChange, onSubmit
   const onSubmit = async (data: UserUpdate) => {
     try {
       setIsLoading(true);
-      onUpdateUserSubmit(data, () => {
-        form.reset();
-        setIsLoading(false);
-        onOpenChange(false);
-      });
+
+      await onUpdateUserSubmit(data);
+
+      form.reset();
+
+      setIsLoading(false);
+      onOpenChange(false);
     } catch (error) {
       console.error(`Error updating ${entityLabel.toLowerCase()}:`, error);
     }
