@@ -22,6 +22,11 @@ Page `/users`:
 
 Page `/animals`:
 
+=====
+UPDATE: 5.7. Added big refactor of animal section of assignment - left user section for comparison. 
+When tested with great number of items 1000+ user section will feel unusable when opening dialogs - Animal section is much performant in this aspect - there could be virtualized lists added, but ,,ain't nobody got time for that,, :D.
+=====
+
 Now do the same for the second entity - **animal**.
 
 - Fetch a list of animals from the API - [See Solution](src/app/animals/page.tsx#L31)
